@@ -1,15 +1,16 @@
 import re
 
-pipes = []
+
+pipekey = ""
 
 def loadPipelines(filepath = "./pipelines.yml"):
     f = open(filepath,'r')
     Lines = f.readlines()
+    pipes = []
     keys = []
     pipe = {}
     for line in Lines:
         data = line.strip()
-        enabled = True
         keys = pipe.keys()
         if  re.search("pipeline.id:", data) :        
             if "id" in keys and "config_path" in keys:
@@ -38,6 +39,8 @@ def loadPipelines(filepath = "./pipelines.yml"):
 
     if "id" in keys and "config_path" in keys:
         pipes.append(pipe)
+    return pipes
+
 
 def uncommentPipe(file,pipeid):
     global pipekey

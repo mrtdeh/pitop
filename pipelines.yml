@@ -1,23 +1,23 @@
 ################################# NBA Pipelines ###########################################
 
 # for netflow, bro,suricata,beats,winlogbeat .... to broker :
-# - pipeline.id: to_broker
-  #path.config: "/etc/logstash/conf.d/pipelines/to_broker/*.conf"
-  #pipeline.workers: 4
-  #pipeline.batch.size: 250
-  #pipeline.batch.delay: 50
+- pipeline.id: to_broker
+  path.config: "/etc/logstash/conf.d/pipelines/to_broker/*.conf"
+  pipeline.workers: 4
+  pipeline.batch.size: 250
+  pipeline.batch.delay: 50
 
-- pipeline.id: to_ilb
-  path.config: "/etc/logstash/conf.d/pipelines/to_ilb/*.conf"
-  pipeline.workers: 4
-  pipeline.batch.size: 250
-  pipeline.batch.delay: 50
+#- pipeline.id: to_ilb
+#  path.config: "/etc/logstash/conf.d/pipelines/to_ilb/*.conf"
+#  pipeline.workers: 4
+#  pipeline.batch.size: 250
+#  pipeline.batch.delay: 50
   
-- pipeline.id: forward_to_ilb
-  path.config: "/etc/logstash/conf.d/pipelines/forward_to_ilb/*.conf"
-  pipeline.workers: 4
-  pipeline.batch.size: 250
-  pipeline.batch.delay: 50
+#- pipeline.id: forward_to_ilb
+#  path.config: "/etc/logstash/conf.d/pipelines/forward_to_ilb/*.conf"
+#  pipeline.workers: 4
+#  pipeline.batch.size: 250
+#  pipeline.batch.delay: 50
 
 - pipeline.id: forwarded_from_ilb
   path.config: "/etc/logstash/conf.d/pipelines/forwarded_from_ilb/*.conf"
@@ -26,25 +26,25 @@
   pipeline.batch.delay: 50
 
 ## Import alert index from other layer BDA 
-#- pipeline.id: alert_forwarded
-#  path.config: "/etc/logstash/conf.d/pipelines/alert_forwarded/*.conf"
-#  pipeline.workers: 1
-#  pipeline.batch.size: 10
-#  pipeline.batch.delay: 50
+- pipeline.id: alert_forwarded
+  path.config: "/etc/logstash/conf.d/pipelines/alert_forwarded/*.conf"
+  pipeline.workers: 1
+  pipeline.batch.size: 10
+  pipeline.batch.delay: 50
 
 ## for receive forwarded events 
-#- pipeline.id: forwarded
-#  path.config: "/etc/logstash/conf.d/pipelines/forwarded/*.conf"
-#  pipeline.workers: 2
-#  pipeline.batch.size: 10
-#  pipeline.batch.delay: 50
+- pipeline.id: forwarded
+  path.config: "/etc/logstash/conf.d/pipelines/forwarded/*.conf"
+  pipeline.workers: 2
+  pipeline.batch.size: 10
+  pipeline.batch.delay: 50
 
 ## for send events from nba broker to main broker
-#- pipeline.id: forward_to_next_broker
-#  path.config: "/etc/logstash/conf.d/pipelines/forward_to_next_broker/*.conf"
-#  pipeline.workers: 4
-#  pipeline.batch.size: 2000
-#  pipeline.batch.delay: 50
+- pipeline.id: forward_to_next_broker
+  path.config: "/etc/logstash/conf.d/pipelines/forward_to_next_broker/*.conf"
+  pipeline.workers: 4
+  pipeline.batch.size: 2000
+  pipeline.batch.delay: 50
 
 ################################# BDA Pipelines ###########################################
 
@@ -54,83 +54,83 @@
   pipeline.batch.size: 500
   pipeline.batch.delay: 50  
 
-- pipeline.id: siem_kafka-metrics
-  path.config: "/etc/logstash/conf.d/pipelines/siem_kafka-metrics/*.conf"
-  pipeline.workers: 1
-  pipeline.batch.size: 10
-  pipeline.batch.delay: 50  
+#- pipeline.id: siem_kafka-metrics
+#  path.config: "/etc/logstash/conf.d/pipelines/siem_kafka-metrics/*.conf"
+#  pipeline.workers: 1
+#  pipeline.batch.size: 10
+#  pipeline.batch.delay: 50  
 
-- pipeline.id: metricbeat_and_healthy
-  path.config: "/etc/logstash/conf.d/pipelines/metricbeat_and_healthy/*.conf"
-  pipeline.workers: 1
-  pipeline.batch.size: 250
-  pipeline.batch.delay: 50
+#- pipeline.id: metricbeat_and_healthy
+#  path.config: "/etc/logstash/conf.d/pipelines/metricbeat_and_healthy/*.conf"
+#  pipeline.workers: 1
+#  pipeline.batch.size: 250
+#  pipeline.batch.delay: 50
 
-- pipeline.id: siem_netflow
-  path.config: "/etc/logstash/conf.d/pipelines/siem_netflow/*.conf"
-  pipeline.workers: 2
-  pipeline.batch.size: 250
-  pipeline.batch.delay: 50
+#- pipeline.id: siem_netflow
+#  path.config: "/etc/logstash/conf.d/pipelines/siem_netflow/*.conf"
+#  pipeline.workers: 2
+#  pipeline.batch.size: 250
+#  pipeline.batch.delay: 50
 
-- pipeline.id: siem_ad-audit
-  path.config: "/etc/logstash/conf.d/pipelines/siem_ad-audit/*.conf"
-  pipeline.workers: 1
-  pipeline.batch.size: 100
-  pipeline.batch.delay: 50
+#- pipeline.id: siem_ad-audit
+#  path.config: "/etc/logstash/conf.d/pipelines/siem_ad-audit/*.conf"
+#  pipeline.workers: 1
+#  pipeline.batch.size: 100
+#  pipeline.batch.delay: 50
 
-- pipeline.id: siem_kaspersky
-  path.config: "/etc/logstash/conf.d/pipelines/siem_kaspersky/*.conf"
-  pipeline.workers: 1
-  pipeline.batch.size: 100
-  pipeline.batch.delay: 50
+#- pipeline.id: siem_kaspersky
+#  path.config: "/etc/logstash/conf.d/pipelines/siem_kaspersky/*.conf"
+#  pipeline.workers: 1
+#  pipeline.batch.size: 100
+#  pipeline.batch.delay: 50
 
-- pipeline.id: siem_bitdefender
-  path.config: "/etc/logstash/conf.d/pipelines/siem_bitdefender/*.conf"
-  pipeline.workers: 1
-  pipeline.batch.size: 100
-  pipeline.batch.delay: 50
+#- pipeline.id: siem_bitdefender
+#  path.config: "/etc/logstash/conf.d/pipelines/siem_bitdefender/*.conf"
+#  pipeline.workers: 1
+#  pipeline.batch.size: 100
+#  pipeline.batch.delay: 50
 
-- pipeline.id: siem_wazuh
-  path.config: "/etc/logstash/conf.d/pipelines/siem_wazuh/*.conf"
-  pipeline.workers: 1
-  pipeline.batch.size: 100
-  pipeline.batch.delay: 50
+#- pipeline.id: siem_wazuh
+#  path.config: "/etc/logstash/conf.d/pipelines/siem_wazuh/*.conf"
+#  pipeline.workers: 1
+#  pipeline.batch.size: 100
+#  pipeline.batch.delay: 50
 
-- pipeline.id: siem_nomatch-parser
-  path.config: "/etc/logstash/conf.d/pipelines/siem_nomatch-parser/*.conf"
-  pipeline.workers: 1
-  pipeline.batch.size: 100
-  pipeline.batch.delay: 50
+#- pipeline.id: siem_nomatch-parser
+#  path.config: "/etc/logstash/conf.d/pipelines/siem_nomatch-parser/*.conf"
+#  pipeline.workers: 1
+#  pipeline.batch.size: 100
+#  pipeline.batch.delay: 50
 
-- pipeline.id: siem_nids-eve
-  path.config: "/etc/logstash/conf.d/pipelines/siem_nids-eve/*.conf"
-  pipeline.workers: 1
-  pipeline.batch.size: 100
-  pipeline.batch.delay: 50
+#- pipeline.id: siem_nids-eve
+#  path.config: "/etc/logstash/conf.d/pipelines/siem_nids-eve/*.conf"
+#  pipeline.workers: 1
+#  pipeline.batch.size: 100
+#  pipeline.batch.delay: 50
 
-- pipeline.id: siem_iis
-  path.config: "/etc/logstash/conf.d/pipelines/siem_iis/*.conf"
-  pipeline.workers: 1
-  pipeline.batch.size: 100
-  pipeline.batch.delay: 50
+#- pipeline.id: siem_iis
+#  path.config: "/etc/logstash/conf.d/pipelines/siem_iis/*.conf"
+#  pipeline.workers: 1
+#  pipeline.batch.size: 100
+#  pipeline.batch.delay: 50
 
-- pipeline.id: siem_cisco-ise
-  path.config: "/etc/logstash/conf.d/pipelines/siem_cisco-ise/*.conf"
-  pipeline.workers: 1
-  pipeline.batch.size: 100
-  pipeline.batch.delay: 50
+#- pipeline.id: siem_cisco-ise
+#  path.config: "/etc/logstash/conf.d/pipelines/siem_cisco-ise/*.conf"
+#  pipeline.workers: 1
+#  pipeline.batch.size: 100
+#  pipeline.batch.delay: 50
 
-- pipeline.id: siem_bro
-  path.config: "/etc/logstash/conf.d/pipelines/siem_bro/*.conf"
-  pipeline.workers: 2
-  pipeline.batch.size: 200
-  pipeline.batch.delay: 50
+#- pipeline.id: siem_bro
+#  path.config: "/etc/logstash/conf.d/pipelines/siem_bro/*.conf"
+#  pipeline.workers: 2
+#  pipeline.batch.size: 200
+#  pipeline.batch.delay: 50
 
-- pipeline.id: siem_exchange
-  path.config: "/etc/logstash/conf.d/pipelines/siem_exchange/*.conf"
-  pipeline.workers: 1
-  pipeline.batch.size: 100
-  pipeline.batch.delay: 50
+#- pipeline.id: siem_exchange
+#  path.config: "/etc/logstash/conf.d/pipelines/siem_exchange/*.conf"
+#  pipeline.workers: 1
+#  pipeline.batch.size: 100
+#  pipeline.batch.delay: 50
 
 - pipeline.id: siem_sophos
   path.config: "/etc/logstash/conf.d/pipelines/siem_sophos/*.conf"
@@ -138,17 +138,17 @@
   pipeline.batch.size: 100
   pipeline.batch.delay: 50
 
-- pipeline.id: siem_linux-audit
-  path.config: "/etc/logstash/conf.d/pipelines/siem_linux-audit/*.conf"
-  pipeline.workers: 1
-  pipeline.batch.size: 100
-  pipeline.batch.delay: 50
+#- pipeline.id: siem_linux-audit
+#  path.config: "/etc/logstash/conf.d/pipelines/siem_linux-audit/*.conf"
+#  pipeline.workers: 1
+#  pipeline.batch.size: 100
+#  pipeline.batch.delay: 50
 
-- pipeline.id: siem_gate-ids
-  path.config: "/etc/logstash/conf.d/pipelines/siem_gate-ids/*.conf"
-  pipeline.workers: 1
-  pipeline.batch.size: 100
-  pipeline.batch.delay: 50
+#- pipeline.id: siem_gate-ids
+#  path.config: "/etc/logstash/conf.d/pipelines/siem_gate-ids/*.conf"
+#  pipeline.workers: 1
+#  pipeline.batch.size: 100
+#  pipeline.batch.delay: 50
 
 # - pipeline.id: siem_apk-gate
 #   path.config: "/etc/logstash/conf.d/pipelines/siem_apk-gate/*.conf"
@@ -156,89 +156,89 @@
 #   pipeline.batch.size: 100
 #   pipeline.batch.delay: 50
 
-- pipeline.id: siem_cyberoam
-  path.config: "/etc/logstash/conf.d/pipelines/siem_cyberoam/*.conf"
-  pipeline.workers: 1
-  pipeline.batch.size: 100
-  pipeline.batch.delay: 50
+#- pipeline.id: siem_cyberoam
+#  path.config: "/etc/logstash/conf.d/pipelines/siem_cyberoam/*.conf"
+#  pipeline.workers: 1
+#  pipeline.batch.size: 100
+#  pipeline.batch.delay: 50
 
-- pipeline.id: siem_fortiweb
-  path.config: "/etc/logstash/conf.d/pipelines/siem_fortiweb/*.conf"
-  pipeline.workers: 1
-  pipeline.batch.size: 100
-  pipeline.batch.delay: 50
+#- pipeline.id: siem_fortiweb
+#  path.config: "/etc/logstash/conf.d/pipelines/siem_fortiweb/*.conf"
+#  pipeline.workers: 1
+#  pipeline.batch.size: 100
+#  pipeline.batch.delay: 50
 
-- pipeline.id: siem_fortigate
-  path.config: "/etc/logstash/conf.d/pipelines/siem_fortigate/*.conf"
-  pipeline.workers: 1
-  pipeline.batch.size: 100
-  pipeline.batch.delay: 50
+#- pipeline.id: siem_fortigate
+#  path.config: "/etc/logstash/conf.d/pipelines/siem_fortigate/*.conf"
+#  pipeline.workers: 1
+#  pipeline.batch.size: 100
+#  pipeline.batch.delay: 50
 
-- pipeline.id: siem_parswaf
-  path.config: "/etc/logstash/conf.d/pipelines/siem_parswaf/*.conf"
-  pipeline.workers: 1
-  pipeline.batch.size: 250
-  pipeline.batch.delay: 50
+#- pipeline.id: siem_parswaf
+#  path.config: "/etc/logstash/conf.d/pipelines/siem_parswaf/*.conf"
+#  pipeline.workers: 1
+#  pipeline.batch.size: 250
+#  pipeline.batch.delay: 50
 
-- pipeline.id: siem_auditbeat
-  path.config: "/etc/logstash/conf.d/pipelines/siem_auditbeat/*.conf"
-  pipeline.workers: 1
-  pipeline.batch.size: 250
-  pipeline.batch.delay: 50
+#- pipeline.id: siem_auditbeat
+#  path.config: "/etc/logstash/conf.d/pipelines/siem_auditbeat/*.conf"
+#  pipeline.workers: 1
+#  pipeline.batch.size: 250
+#  pipeline.batch.delay: 50
 
-- pipeline.id: siem_apache
-  path.config: "/etc/logstash/conf.d/pipelines/siem_apache/*.conf"
-  pipeline.workers: 1
-  pipeline.batch.size: 250
-  pipeline.batch.delay: 50
+#- pipeline.id: siem_apache
+#  path.config: "/etc/logstash/conf.d/pipelines/siem_apache/*.conf"
+#  pipeline.workers: 1
+#  pipeline.batch.size: 250
+#  pipeline.batch.delay: 50
 
-- pipeline.id: siem_nginx
-  path.config: "/etc/logstash/conf.d/pipelines/siem_nginx/*.conf"
-  pipeline.workers: 1
-  pipeline.batch.size: 250
-  pipeline.batch.delay: 50
+#- pipeline.id: siem_nginx
+#  path.config: "/etc/logstash/conf.d/pipelines/siem_nginx/*.conf"
+#  pipeline.workers: 1
+#  pipeline.batch.size: 250
+#  pipeline.batch.delay: 50
 
-- pipeline.id: siem_juniper
-  path.config: "/etc/logstash/conf.d/pipelines/siem_juniper/*.conf"
-  pipeline.workers: 1
-  pipeline.batch.size: 250
-  pipeline.batch.delay: 50
+#- pipeline.id: siem_juniper
+#  path.config: "/etc/logstash/conf.d/pipelines/siem_juniper/*.conf"
+#  pipeline.workers: 1
+#  pipeline.batch.size: 250
+#  pipeline.batch.delay: 50
 
-- pipeline.id: siem_postfix
-  path.config: "/etc/logstash/conf.d/pipelines/siem_postfix/*.conf"
-  pipeline.workers: 1
-  pipeline.batch.size: 250
-  pipeline.batch.delay: 50
+#- pipeline.id: siem_postfix
+#  path.config: "/etc/logstash/conf.d/pipelines/siem_postfix/*.conf"
+#  pipeline.workers: 1
+#  pipeline.batch.size: 250
+#  pipeline.batch.delay: 50
 
-- pipeline.id: siem_axigen
-  path.config: "/etc/logstash/conf.d/pipelines/siem_axigen/*.conf"
-  pipeline.workers: 1
-  pipeline.batch.size: 250
-  pipeline.batch.delay: 50
+#- pipeline.id: siem_axigen
+#  path.config: "/etc/logstash/conf.d/pipelines/siem_axigen/*.conf"
+#  pipeline.workers: 1
+#  pipeline.batch.size: 250
+#  pipeline.batch.delay: 50
 
-- pipeline.id: siem_solarx
-  path.config: "/etc/logstash/conf.d/pipelines/siem_solarx/*.conf"
-  pipeline.workers: 1
-  pipeline.batch.size: 250
-  pipeline.batch.delay: 50
+#- pipeline.id: siem_solarx
+#  path.config: "/etc/logstash/conf.d/pipelines/siem_solarx/*.conf"
+#  pipeline.workers: 1
+#  pipeline.batch.size: 250
+#  pipeline.batch.delay: 50
 
-- pipeline.id: siem_pfsense
-  path.config: "/etc/logstash/conf.d/pipelines/siem_pfsense/*.conf"
-  pipeline.workers: 1
-  pipeline.batch.size: 250
-  pipeline.batch.delay: 50
+#- pipeline.id: siem_pfsense
+#  path.config: "/etc/logstash/conf.d/pipelines/siem_pfsense/*.conf"
+#  pipeline.workers: 1
+#  pipeline.batch.size: 250
+#  pipeline.batch.delay: 50
 
-- pipeline.id: siem_mysql
-  path.config: "/etc/logstash/conf.d/pipelines/siem_mysql/*.conf"
-  pipeline.workers: 1
-  pipeline.batch.size: 250
-  pipeline.batch.delay: 50
+#- pipeline.id: siem_mysql
+#  path.config: "/etc/logstash/conf.d/pipelines/siem_mysql/*.conf"
+#  pipeline.workers: 1
+#  pipeline.batch.size: 250
+#  pipeline.batch.delay: 50
 
-- pipeline.id: siem_logstash
-  path.config: "/etc/logstash/conf.d/pipelines/siem_logstash/*.conf"
-  pipeline.workers: 1
-  pipeline.batch.size: 10
-  pipeline.batch.delay: 50
+#- pipeline.id: siem_logstash
+#  path.config: "/etc/logstash/conf.d/pipelines/siem_logstash/*.conf"
+#  pipeline.workers: 1
+#  pipeline.batch.size: 10
+#  pipeline.batch.delay: 50
 
 - pipeline.id: siem_kafka
   path.config: "/etc/logstash/conf.d/pipelines/siem_kafka/*.conf"
